@@ -12,7 +12,12 @@ server.get("/", function(req, res){
 });
 
 server.get("/string", function(req, res){
-    const len = req.query.len || 32;
+    let len = req.query.len || 32;
+
+    if(len == null || len == undefined || typeof len != "number"){
+        len = 32;
+    }
+
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?^+*#@.,:;-_$%&=";
     const charsLength = chars.length;
     
@@ -28,7 +33,12 @@ server.get("/string", function(req, res){
 });
 
 server.get("/int", function(req, res){
-    const max = req.query.max || 10000;
+    let max = req.query.max || 10000;
+
+    if(max == null || max == undefined || typeof len != "number"){
+        max = 10000;
+    }
+
     let num = Math.floor(Math.random() * max).toString();
 
     res.send(num);
