@@ -12,9 +12,9 @@ server.get("/", function(req, res){
 });
 
 server.get("/string", function(req, res){
-    let len = req.query.len || 32;
+    let len = parseInt(req.query.len) || 32;
 
-    if(len == null || len == undefined || typeof len != "number"){
+    if(isNaN(len) || len == null || len == undefined || typeof len != "number"){
         len = 32;
     }
 
@@ -33,9 +33,9 @@ server.get("/string", function(req, res){
 });
 
 server.get("/int", function(req, res){
-    let max = req.query.max || 10000;
+    let max = parseInt(req.query.max) || 10000;
 
-    if(max == null || max == undefined || typeof len != "number"){
+    if(isNaN(max) || max == null || max == undefined || typeof len != "number"){
         max = 10000;
     }
 
