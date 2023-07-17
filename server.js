@@ -14,7 +14,7 @@ server.get("/", function(req, res){
 server.get("/string", function(req, res){
     let len = parseInt(req.query.len) || 32;
 
-    if(isNaN(len) || len == null || len == undefined || typeof len != "number"){
+    if(isNaN(len) || len == null || len == undefined){
         len = 32;
     }
 
@@ -35,7 +35,7 @@ server.get("/string", function(req, res){
 server.get("/int", function(req, res){
     let max = parseInt(req.query.max) || 10000;
 
-    if(isNaN(max) || max == null || max == undefined || typeof len != "number"){
+    if(isNaN(max) || max == null || max == undefined){
         max = 10000;
     }
 
