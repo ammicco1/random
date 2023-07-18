@@ -70,7 +70,7 @@ server.get("/json", function(req, res){
 
         choise = Math.floor(Math.random() * 10);
 
-        switch(choise % 3){
+        switch(choise % 4){
             case 0: json[str] = Math.floor(Math.random() * 1000); break;
             case 1: str2 = "";
                 counter = 0;
@@ -101,6 +101,57 @@ server.get("/json", function(req, res){
                 }
 
                 json[str] = array; break;
+            case 3: 
+                let max2 = Math.floor(Math.random() * 5);
+                let str4, str5; 
+                let counter2;
+                let choise2;
+                let out = {};
+
+                for(i = 0; i < max2; i++){
+                    str4 = "";
+                    counter2 = 0;
+        
+                    while(counter2 < 6){
+                        str4 += chars.charAt(Math.floor(Math.random() * charsLength));
+                        counter2++;
+                    }
+        
+                    choise2 = Math.floor(Math.random() * 10);
+        
+                    switch(choise2 % 3){
+                        case 0: out[str4] = Math.floor(Math.random() * 1000); break;
+                        case 1: str5 = "";
+                            counter2 = 0;
+        
+                            while(counter2 < 10){
+                                str5 += chars.charAt(Math.floor(Math.random() * charsLength));
+                                counter2++;
+                            }
+        
+                            out[str4] = str5; break;
+                        case 2: let array2 = [];
+                            let alen2 = Math.floor(Math.random() * 10);
+        
+                            for(j = 0; j < alen2; j++){
+                                if(Math.floor(Math.random() * 10) % 2 == 0){
+                                    array2.push(Math.floor(Math.random() * 1000));
+                                }else{
+                                    var str6 = "";
+                                    let c2 = 0;
+                                
+                                    while(c2 < 8){
+                                        str6 += chars.charAt(Math.floor(Math.random() * charsLength));
+                                        c2++;
+                                    }
+                                }
+                            
+                                array2.push(str6);
+                            }
+
+                            out[str4] = array2;
+                    }   
+                } json[str] = out;
         }
     }
 
