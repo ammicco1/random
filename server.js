@@ -85,15 +85,19 @@ function genArray(len, type){
     let array = [];
 
     if(type == "int"){
-        array.push(Math.floor(Math.random() * 1000));
+        for(i = 0; i < len; i++){
+            array.push(Math.floor(Math.random() * 1000));
+        }
     }else if(type == "strings"){
-        array.push(genStr(8))
+        for(i = 0; i < len; i++){
+            array.push(genStr(8));
+        }
     }else{
         for(i = 0; i < len; i++){
             if(Math.floor(Math.random() * 10) % 2 == 0){
                 array.push(Math.floor(Math.random() * 1000));
             }else{
-                array.push(genStr(8))
+                array.push(genStr(8));
             }
         }
     }
