@@ -30,26 +30,22 @@ server.get("/int", function(req, res){
         max = 10000;
     }
 
-    let num = Math.floor(Math.random() * max).toString();
+    res.send(Math.floor(Math.random() * max).toString());
+});
 
-    res.send(num);
+server.get("/array", function(req, res){
+    let type = req.query.type;
+
+    if(type == null || type == undefined){
+        type = "mix";
+    }    
+
+    res.send(genArray(Math.floor(Math.random() * 100), type));
 });
 
 server.get("/json", function(req, res){
-
-
-
-
-
-
-    let max = Math.floor(Math.random() * 15);
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    const charsLength = chars.length;
-    
-    let str, str2;
-    let counter;
-    let choise;
-
+    let max = Math.floor(Math.random() * 15);    
+    let str;
     let json = {}; 
     
     while(max == 0){
@@ -57,20 +53,12 @@ server.get("/json", function(req, res){
     }
 
     for(i = 0; i < max; i++){
-        str = "";
-        counter = 0;
+        str = genStr(6);
 
-        while(counter < 6){
-            str += chars.charAt(Math.floor(Math.random() * charsLength));
-            counter++;
-        }
-
-        choise = Math.floor(Math.random() * 10);
-
-        switch(choise % 4){
+        switch(Math.floor(Math.random() * 10) % 4){
             case 0: json[str] = Math.floor(Math.random() * 1000); break;
             case 1: json[str] = genStr(10); break;
-            case 2: json[str] = genArray(Math.floor(Math.random() * 10)); break;
+            case 2: json[str] = genArray(Math.floor(Math.random() * 10), "mix"); break;
             case 3: json[str] = genJson(Math.floor(Math.random() * 5)); break;
         }
     }
@@ -93,14 +81,20 @@ function genStr(len){
     return result;
 }
 
-function genArray(len){
+function genArray(len, type){
     let array = [];
 
-    for(i = 0; i < len; i++){
-        if(Math.floor(Math.random() * 10) % 2 == 0){
-            array.push(Math.floor(Math.random() * 1000));
-        }else{
-            array.push(genStr(8))
+    if(type == "int"){
+        array.push(Math.floor(Math.random() * 1000));
+    }else if(type == "strings"){
+        array.push(genStr(8))
+    }else{
+        for(i = 0; i < len; i++){
+            if(Math.floor(Math.random() * 10) % 2 == 0){
+                array.push(Math.floor(Math.random() * 1000));
+            }else{
+                array.push(genStr(8))
+            }
         }
     }
 
@@ -117,7 +111,7 @@ function genJson(numObj){
         switch(Math.floor(Math.random() * 10) % 3){
             case 0: out[name] = Math.floor(Math.random() * 1000); break;
             case 1: out[name] = genStr(10); break;
-            case 2: out[name] = genArray(Math.floor(Math.random() * 10)); break;
+            case 2: out[name] = genArray(Math.floor(Math.random() * 10), "mix"); break;
         }   
     } 
 
