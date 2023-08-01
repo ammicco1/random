@@ -35,12 +35,17 @@ server.get("/int", function(req, res){
 
 server.get("/array", function(req, res){
     let type = req.query.type;
+    let len = req.query.len; 
 
     if(type == null || type == undefined){
         type = "mix";
     }    
 
-    res.send(genArray(Math.floor(Math.random() * 100), type));
+    if(len == null || len == undefined){
+        len = Math.floor(Math.random() * 100);
+    }
+
+    res.send(genArray(len, type));
 });
 
 server.get("/json", function(req, res){
