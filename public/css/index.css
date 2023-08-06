@@ -1,0 +1,51 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    background-color: #232629;
+    color: rgb(216, 208, 197);
+}
+
+html, body, #container{
+    height: 100%;
+    overflow: hidden;
+}
+
+ul{
+    padding-top: 1em;
+    padding-left: 3em;
+}
+
+h2{
+    padding-left: 3em;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:link, a:visited{
+    color: rgba(248, 240, 230, 0.52);
+}
+
+.blink{
+    display: block;
+    position: absolute;
+    height: 0.1em;
+    width: 0.1em;
+    background-color: #fffff0;
+    animation: blinks 6s infinite;
+    border-radius: 10px;
+    z-index: -1;
+}
+
+@keyframes blinks{
+    from{
+        background-color: #fffff0;
+    }
+    50%{
+        background-color: #232629;
+    }
+    to{
+        background-color: #fffff0;
+    }
+}

@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-    <style>
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 20px;
-            background-color: rgb(255, 250, 244);
-        }
-    </style>
-
     <meta charset = "UTF-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
     <meta name = "Description" content = "Get random value">
+    <link rel = "stylesheet" href = "css/index.css">
     <title>Random</title>
 </head>
 <body>
-    <h4>What do you want?</h4>
-    <ul>
-        <li>For random string go to <a href = "/string">random string</a> (set max length with len=NUM in url query)</li>
-        <li>For random integer go to <a href = "/int">random int</a> (set max value with max=NUM in url query)</li>
-        <li>For random array go to <a href = "/array">random array</a> (set the type of value (strings, int) with type=[int|strings] in url query, default is both. set length of array with len=NUM in url query)</li>
-        <li>For random json object got to <a href = "/json">random json</a></li>
-    </ul>
+    <div id = "container">
+        <h2>What do you want?</h2>
+        <ul>
+            <li>For random string go to <a href = "/string">random string</a> (set max length with len=NUM in url query)</li>
+            <li>For random integer go to <a href = "/int">random int</a> (set max value with max=NUM in url query)</li>
+            <li>For random array go to <a href = "/array">random array</a> (set the type of value (strings, int) with type=[int|strings] in url query, default is both. set length of array with len=NUM in url query)</li>
+            <li>For random json object got to <a href = "/json">random json</a></li>
+        </ul>
+    </div>
+
+    <script src = "js/index.js"></script>
 </body>
 </html>

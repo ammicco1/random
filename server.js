@@ -3,7 +3,7 @@ const server = express();
 
 const port = process.argv[2] || 3000;
 
-server.use(express.static(`${__dirname}/views`));
+server.use(express.static(`${__dirname}/public`));
 
 server.listen(port, function(){
     console.debug(`random listen on port ${port}`);
