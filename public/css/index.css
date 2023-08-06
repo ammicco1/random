@@ -10,15 +10,6 @@ html, body, #container{
     overflow: hidden;
 }
 
-ul{
-    padding-top: 1em;
-    padding-left: 3em;
-}
-
-h2{
-    padding-left: 3em;
-}
-
 a{
     text-decoration: none;
 }
