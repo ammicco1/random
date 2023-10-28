@@ -36,6 +36,7 @@ server.get("/int", function(req, res){
 server.get("/array", function(req, res){
     let type = req.query.type;
     let len = req.query.len; 
+    let strlen = req.query.strlen;
 
     if(type == null || type == undefined){
         type = "mix";
@@ -45,7 +46,11 @@ server.get("/array", function(req, res){
         len = Math.floor(Math.random() * 100);
     }
 
-    res.send(genArray(len, type));
+    if(strlen == null || strlen == undefined || strlen < 1){
+        strlen = -1;
+    }
+
+    res.send(genArray(len, type, strlen));
 });
 
 server.get("/json", function(req, res){
@@ -86,23 +91,23 @@ function genStr(len){
     return result;
 }
 
-function genArray(len, type){
+function genArray(len, type, strlen){
     let array = [];
 
     if(type == "int"){
         for(i = 0; i < len; i++){
             array.push(Math.floor(Math.random() * 1000));
         }
-    }else if(type == "strings"){
+    }else if(type == "strings" || type == "string"){
         for(i = 0; i < len; i++){
-            array.push(genStr(8));
+            array.push(genStr(strlen > -1 ? strlen : 8));
         }
     }else{
         for(i = 0; i < len; i++){
             if(Math.floor(Math.random() * 10) % 2 == 0){
                 array.push(Math.floor(Math.random() * 1000));
             }else{
-                array.push(genStr(8));
+                array.push(genStr(strlen > -1 ? strlen : 8));
             }
         }
     }
