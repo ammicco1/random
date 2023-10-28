@@ -10,6 +10,8 @@ server.listen(port, function(){
 });
 
 server.get("/", function(req, res){
+    console.log("request GET / ");
+
     res.sendFile(`${__dirname}/views/index.html`);
 });
 
@@ -20,6 +22,8 @@ server.get("/string", function(req, res){
         len = 32;
     }
 
+    console.log(`request GET /string?len=${len}`);
+
     res.send(genStr(len));
 });
 
@@ -29,6 +33,8 @@ server.get("/int", function(req, res){
     if(isNaN(max) || max == null || max == undefined){
         max = 10000;
     }
+
+    console.log(`request GET /int?max=${max}`);
 
     res.send(Math.floor(Math.random() * max).toString());
 });
@@ -50,6 +56,8 @@ server.get("/array", function(req, res){
         strlen = -1;
     }
 
+    console.log(`request GET /array?type=${type}?len=${len}?strlen=${strlen}`);
+
     res.send(genArray(len, type, strlen));
 });
 
@@ -62,13 +70,15 @@ server.get("/json", function(req, res){
         max = Math.floor(Math.random() * 15);
     }
 
+    console.log("request GET /json");
+
     for(i = 0; i < max; i++){
         str = genStr(6);
 
         switch(Math.floor(Math.random() * 10) % 4){
             case 0: json[str] = Math.floor(Math.random() * 1000); break;
             case 1: json[str] = genStr(10); break;
-            case 2: json[str] = genArray(Math.floor(Math.random() * 10), "mix"); break;
+            case 2: json[str] = genArray(Math.floor(Math.random() * 10), "mix", -1); break;
             case 3: json[str] = genJson(Math.floor(Math.random() * 5)); break;
         }
     }
